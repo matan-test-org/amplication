@@ -26,7 +26,7 @@ jobs:
             ~/.npm
             node_modules
             */*/node_modules
-          key: PUSH-${{ runner.os }}-${{matrix.node-version}}-${{ hashFiles(./packages/amplication-data-service-generator/**/package-lock.json)}}
+          key: GA-E2E-${{ runner.os }}-${{matrix.node-version}}-${{ hashFiles('./packages/amplication-data-service-generator/**/package-lock.json')}}
           restore-keys: |
             GA-E2E-${{ runner.os }}-${{matrix.node-version}}
             GA-E2E-${{ runner.os }}-
