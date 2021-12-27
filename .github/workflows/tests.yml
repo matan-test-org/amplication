@@ -26,7 +26,7 @@ jobs:
             ~/.npm
             node_modules
             */*/node_modules
-          key: PUSH-${{ runner.os }}-${{matrix.node-version}}-${{ hashFiles(./packages/amplication-data-service-generator/**/package-lock.json)}}
+          key: GA-E2E-${{ runner.os }}-${{matrix.node-version}}-${{ hashFiles('./packages/amplication-data-service-generator/**/package-lock.json')}}
           restore-keys: |
             GA-E2E-${{ runner.os }}-${{matrix.node-version}}
             GA-E2E-${{ runner.os }}-
@@ -37,16 +37,16 @@ jobs:
       - run: npm ci
 
       - name: Install packages' dependencies
-        run: lerna bootstrap --scope @amplication/data-service-generator --include-dependencies
+        run: lerna bootstrap --scope=@amplication/data-service-generator --include-dependencies
 
       - name: Generate test data service
         run: npm run generate-test-data-service
 
       - name: Build Data Service Generator
-        run: lerna run prisma:generate --scope @amplication/data-service-generator --include-dependencies
+        run: lerna run prisma:generate --scope=@amplication/data-service-generator --include-dependencies
 
       - name: Build Data Service Generator
-        run: lerna run build --scope @amplication/data-service-generator --include-dependencies
+        run: lerna run build --scope=@amplication/data-service-generator --include-dependencies
 
       - name: Run test data service's tests
         run: lerna run test --scope=@amplication/data-service-generator
